@@ -1,0 +1,45 @@
+//iterative thinking
+/*FUNCTION pow(x,n :INTEGER) : INTEGER
+VAR
+    result : INTEGER:-1;
+    i : INTEGER;
+BEGIN
+    for i from 1 to n DO
+        result :- result *x;
+        END_FOR 
+    RETURN result ;
+END
+
+// Recursive thinking
+
+FUNCTION pow(x,n :INTEGER) : INTEGER
+BEGIN
+    if (n=1) THEN 
+        Return x; 
+    ELSE
+        RETURN x * pow(x, n-1);
+    END_IF
+END */
+
+
+// sum of elements in an array
+FUNCTION linearSum(arr : ARRAY_OF INTEGER, n :INTEGER) : INTEGER
+BEGIN
+   IF (n = 1) THEN // when the n is the length of the arr
+      RETURN arr[0];
+   ELSE
+       // here we recall the function with the length - 1
+       RETURN arr[n-1] + linearSum(arr,n-1);
+   END_IF
+END
+
+//fibonacci sequence
+FUNCTION fibbonacci(n:INTEGER) : INTEGER
+IF (n=0) THEN
+   RETURN 0;
+ELSE_IF (n=1) THEN
+   RETURN 1
+ELSE
+    RETURN fibbonacci(n-1) + fibbonacci(n-2)
+END_IF
+END
