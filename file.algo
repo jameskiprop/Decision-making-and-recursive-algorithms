@@ -1,45 +1,40 @@
-//iterative thinking
-/*FUNCTION pow(x,n :INTEGER) : INTEGER
+/*Fibonacci Sequence: Implement a recursive function to generate the nth Fibonacci number. The Fibonacci sequence starts
+with 0 and 1, and each subsequent number is the sum of the two preceding numbers (0, 1, 1, 2, 3, 5, 8, ...). */
+
+FUNCTION fibonacci(n) : INTEGER
 VAR
-    result : INTEGER:-1;
-    i : INTEGER;
+    //base case
+    IF (n === 0) THEN
+        RETURN 0;
+    END_IF 
+
+    IF (n === 1) THEN
+        return 1;
+    END_IF 
+
 BEGIN
-    for i from 1 to n DO
-        result :- result *x;
-        END_FOR 
-    RETURN result ;
+    //recursive case
+    RETURN fibonacci(n - 1) + fibonacci(n - 2); ;
 END
 
-// Recursive thinking
+/*Palindrome Checker: Create a recursive function to check if a given string is a palindrome (reads the same forwards and 
+backwards), ignoring spaces, punctuation, and capitalization. */
 
-FUNCTION pow(x,n :INTEGER) : INTEGER
+FUNCTION palindromeChecker(c) : BOOLEAN
+VAR
+    // removing spaces and punctuation, converting the string to lowercase
+    c := removeNonAlphanumeric(c);
+    c := toLowerCase(c);
+
+    //base case (if string length is empty or has one character, it is a palindrome)
+    IF length (c) <= 1 THEN
+    RETURN TRUE
+
+    // Base case If the first and last characters are not the same, it's not a palindrome
+    IF c[0] != c[length(c) - 1] THEN
+        RETURN FALSE;
+    ENDIF
 BEGIN
-    if (n=1) THEN 
-        Return x; 
-    ELSE
-        RETURN x * pow(x, n-1);
-    END_IF
-END */
-
-
-// sum of elements in an array
-FUNCTION linearSum(arr : ARRAY_OF INTEGER, n :INTEGER) : INTEGER
-BEGIN
-   IF (n = 1) THEN // when the n is the length of the arr
-      RETURN arr[0];
-   ELSE
-       // here we recall the function with the length - 1
-       RETURN arr[n-1] + linearSum(arr,n-1);
-   END_IF
-END
-
-//fibonacci sequence
-FUNCTION fibbonacci(n:INTEGER) : INTEGER
-IF (n=0) THEN
-   RETURN 0;
-ELSE_IF (n=1) THEN
-   RETURN 1
-ELSE
-    RETURN fibbonacci(n-1) + fibbonacci(n-2)
-END_IF
+     // Recursive case: Checking the substring without the first and last characters
+    RETURN palindromeChecker(substring(c, 1, length(c) - 2));
 END
